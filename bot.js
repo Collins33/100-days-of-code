@@ -9,11 +9,12 @@ var T = new Twit(Config)
 
 var params={
   q:'moringa school',//search tweet with this keyword
-  count:10//number of tweets to return
+  count:3//number of tweets to return
 }
 
 
-T.get('search/tweets',params,getData);//tell twitter to search for tweets
+T.get('search/tweets',params,getData);//tell twitter to SEARCH for tweets
+//getdata is for handling the response
 
 function getData(err,data,response){
   var tweets=data.statuses;
@@ -22,4 +23,18 @@ function getData(err,data,response){
   }
 
   //the callback function
+}
+
+//POST A tweet
+var tweet={
+  status:'#CodingChallenges with twot'
+}
+T.post('statuses/update',tweet,tweeted);
+function tweeted(err,data,response){
+  if(err){
+    console.log("something went wrong")
+  }
+  else{
+    console.log("It worked")
+  }
 }
