@@ -8,14 +8,18 @@ console.log(Config)
 var T = new Twit(Config)
 
 var params={
-  q:'banana since:2011-11-11',//search tweet with this keyword
-  count:100//number of tweets to return
+  q:'moringa school',//search tweet with this keyword
+  count:10//number of tweets to return
 }
 
 
 T.get('search/tweets',params,getData);//tell twitter to search for tweets
 
 function getData(err,data,response){
-  console.log(data);
+  var tweets=data.statuses;
+  for (var i=0;i < tweets.length;i ++){
+    console.log(tweets[i].text);
+  }
+
   //the callback function
 }
