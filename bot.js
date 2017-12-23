@@ -13,7 +13,9 @@ var T = new Twit(Config)
 //setting up a user stream
 var stream = T.stream('user'); //set up a stream to the twitter api
 
-//BOT TO TWEET WHEN SOMEONE FOLLOWS ME
+
+
+//BOT TO TWEET WHEN SOMEONE FOLLOWS ME================================================================
 stream.on('follow', followed); //assign a callback called followed to the follow activity
 
 function followed(eventMsg) {
@@ -43,9 +45,9 @@ function tweetItFollow(txt) {
 
 
 
-//GET TWEETS FROM SCOTCH
+//GET TWEETS FROM IkoKaziKe==========================
 var params = {
-  q: 'scotch.io', //search tweet with this keyword
+  q: '#IkoKaziKe', //search tweet with this keyword
   count: 3 //number of tweets to return
 }
 T.get('search/tweets', params, getData); //tell twitter to SEARCH for tweets
@@ -59,13 +61,13 @@ function getData(err, data, response) {
   //the callback function
 }
 
-//TWEET A SPECIFIC TWEET
+//=================TWEET A SPECIFIC TWEET================
 tweetIt()
 
 function tweetIt() {
   //var r = Math.floor(Math.random() * 100)
   var tweet = {
-    status: "Invest in good education #devlife #twot"
+    status: "What would you do if you were not afraid.. #devlife #twot"
   }
   T.post('statuses/update', tweet, tweeted);
 
@@ -79,14 +81,14 @@ function tweetIt() {
 }
 
 
-//RETWEET BOT
+//==========RETWEET BOT================
 var retweet = function() {
   var params = {
     q: '#Angularjs, #angularJs',
     result_type: 'recent',
     lang: 'en'
   }
-}
+
 T.get('search/tweets', params, function(err, data) {
   //if there are no errors
   if (!err) {
@@ -110,4 +112,43 @@ T.get('search/tweets', params, function(err, data) {
     console.log("SOMETHING WENT WRONG WHEN FINDING TWEET")
   }
 });
+}
 retweet();
+
+
+//SEARCH AND FAVOURITE A TWEET RANDOMLY
+var retweetFavouriteTweet= function(){
+  var params = {
+    q: '#IkoKaziKe',
+    result_type: 'recent',
+    lang: 'en'
+  }
+  //find the tweets
+  T.get('search/tweets',params,function(err,data){
+    //find the tweets
+    var tweets=data.statuses
+    //pick a random tweet
+    var randomTweet=ranDom(tweets)
+    //if random tweet exists
+    if(typeof randomTweet != 'undefined'){
+      //tell twitter to favourite it
+      T.post('favorites/create',{id:randomTweet.id_str},function(err,response){
+        //check if there was error while favouriting
+        if(err){
+          console.log("CANNOT FAVOURITE")
+        }
+        else{
+          console.log("FAVOURITE WAS SUCCESSFUL")
+        }
+      })
+    }
+  })
+}
+
+retweetFavouriteTweet()
+
+//FUNCTION TO GENERATE A RANDOM NUMBER
+function ranDom (arr) {
+  var index = Math.floor(Math.random()*arr.length);
+  return arr[index];
+};
