@@ -67,7 +67,7 @@ tweetIt()
 function tweetIt() {
   //var r = Math.floor(Math.random() * 100)
   var tweet = {
-    status: "What would you do if you were not afraid.. #devlife #twot"
+    status: "Be a nice human.. #devlife #twot"
   }
   T.post('statuses/update', tweet, tweeted);
 
@@ -84,60 +84,61 @@ function tweetIt() {
 //==========RETWEET BOT================
 var retweet = function() {
   var params = {
-    q: '#Angularjs, #angularJs',
+    q: '#BloodAppeal',
     result_type: 'recent',
     lang: 'en'
   }
 
-T.get('search/tweets', params, function(err, data) {
-  //if there are no errors
-  if (!err) {
-    //grab the id of the tweet to RETWEET
-    var retweetId = data.statuses[0].id_str;
-    //tell twitter to retweet
-    T.post('statuses/retweet/:id', {
-      id: retweetId
-    }, function(err, response) {
-      if (response) {
-        console.log('RETWEETED')
-      }
-      if (err) {
-        console.log("SOMETHING WENT WRONG WHEN RETWEETING")
-      }
-    });
+  T.get('search/tweets', params, function(err, data) {
+    //if there are no errors
+    if (!err) {
+      //grab the id of the tweet to RETWEET
+      var retweetId = data.statuses[0].id_str;
+      //tell twitter to retweet
+      T.post('statuses/retweet/:id', {
+        id: retweetId
+      }, function(err, response) {
+        if (response) {
+          console.log('RETWEETED')
+        }
+        if (err) {
+          console.log("SOMETHING WENT WRONG WHEN RETWEETING")
+        }
+      });
 
-  }
-  //if unable to search a tweet
-  else {
-    console.log("SOMETHING WENT WRONG WHEN FINDING TWEET")
-  }
-});
+    }
+    //if unable to search a tweet
+    else {
+      console.log("SOMETHING WENT WRONG WHEN FINDING TWEET")
+    }
+  });
 }
 retweet();
 
 
 //SEARCH AND FAVOURITE A TWEET RANDOMLY
-var retweetFavouriteTweet= function(){
+var retweetFavouriteTweet = function() {
   var params = {
     q: '#IkoKaziKe',
     result_type: 'recent',
     lang: 'en'
   }
   //find the tweets
-  T.get('search/tweets',params,function(err,data){
+  T.get('search/tweets', params, function(err, data) {
     //find the tweets
-    var tweets=data.statuses
+    var tweets = data.statuses
     //pick a random tweet
-    var randomTweet=ranDom(tweets)
+    var randomTweet = ranDom(tweets)
     //if random tweet exists
-    if(typeof randomTweet != 'undefined'){
+    if (typeof randomTweet != 'undefined') {
       //tell twitter to favourite it
-      T.post('favorites/create',{id:randomTweet.id_str},function(err,response){
+      T.post('favorites/create', {
+        id: randomTweet.id_str
+      }, function(err, response) {
         //check if there was error while favouriting
-        if(err){
+        if (err) {
           console.log("CANNOT FAVOURITE")
-        }
-        else{
+        } else {
           console.log("FAVOURITE WAS SUCCESSFUL")
         }
       })
@@ -148,7 +149,7 @@ var retweetFavouriteTweet= function(){
 retweetFavouriteTweet()
 
 //FUNCTION TO GENERATE A RANDOM NUMBER
-function ranDom (arr) {
-  var index = Math.floor(Math.random()*arr.length);
+function ranDom(arr) {
+  var index = Math.floor(Math.random() * arr.length);
   return arr[index];
 };
