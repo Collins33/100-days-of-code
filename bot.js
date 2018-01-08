@@ -84,7 +84,7 @@ function getData(err, data, response) {
 //==========RETWEET BOT================
 var retweet = function() {
   var params = {
-    q: '#MondayMotivation',
+    q: '#100DaysOfCode',
     lang: 'en',
     count:10
   }
@@ -113,7 +113,7 @@ var retweet = function() {
     }
   });
 }
-retweet();
+
 
 
 //SEARCH AND FAVOURITE A TWEET RANDOMLY
