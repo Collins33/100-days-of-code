@@ -84,9 +84,9 @@ function getData(err, data, response) {
 //==========RETWEET BOT================
 var retweet = function() {
   var params = {
-    q: '#BloodAppeal',
-    
-    lang: 'en'
+    q: '#MondayMotivation',
+    lang: 'en',
+    count:10
   }
 
   T.get('search/tweets', params, function(err, data) {
@@ -154,5 +154,5 @@ function ranDom(arr) {
   return arr[index];
 };
 
-setInterval(retweetFavouriteTweet, 10000 * 20)
+setInterval(retweetFavouriteTweet, 1000*20)
 setInterval(retweet, 1000*20)
