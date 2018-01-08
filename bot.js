@@ -23,7 +23,7 @@ function followed(eventMsg) {
   var screenName = eventMsg.source.screen_name; //get twitter account name
   tweetItFollow('@' + screenName + ' thank you for following')
 }
-//setInterval(tweetIt, 1000 * 20)
+
 //POST A TWEET WHEN FOLLOWED
 function tweetItFollow(txt) {
   //var r = Math.floor(Math.random() * 100)
@@ -62,23 +62,23 @@ function getData(err, data, response) {
 }
 
 //=================TWEET A SPECIFIC TWEET================
-tweetIt()
-
-function tweetIt() {
-  //var r = Math.floor(Math.random() * 100)
-  var tweet = {
-    status: "Be a nice human.. #devlife #twot"
-  }
-  T.post('statuses/update', tweet, tweeted);
-
-  function tweeted(err, data, response) {
-    if (err) {
-      console.log("something went wrong")
-    } else {
-      console.log("It worked")
-    }
-  }
-}
+// tweetIt()
+//
+// function tweetIt() {
+//   //var r = Math.floor(Math.random() * 100)
+//   var tweet = {
+//     status: "Be a nice human.. #devlife #twot"
+//   }
+//   T.post('statuses/update', tweet, tweeted);
+//
+//   function tweeted(err, data, response) {
+//     if (err) {
+//       console.log("something went wrong")
+//     } else {
+//       console.log("It worked")
+//     }
+//   }
+// }
 
 
 //==========RETWEET BOT================
@@ -153,3 +153,6 @@ function ranDom(arr) {
   var index = Math.floor(Math.random() * arr.length);
   return arr[index];
 };
+
+setInterval(retweetFavouriteTweet, 10000 * 20)
+setInterval(retweet, 10000*20)
