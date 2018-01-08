@@ -85,7 +85,7 @@ function getData(err, data, response) {
 var retweet = function() {
   var params = {
     q: '#BloodAppeal',
-    result_type: 'recent',
+    
     lang: 'en'
   }
 
@@ -155,4 +155,4 @@ function ranDom(arr) {
 };
 
 setInterval(retweetFavouriteTweet, 10000 * 20)
-setInterval(retweet, 10000*20)
+setInterval(retweet, 1000*20)
