@@ -154,5 +154,5 @@ function ranDom(arr) {
   return arr[index];
 };
 
-setInterval(retweetFavouriteTweet, 1000*20)
-setInterval(retweet, 1000*20)
+setInterval(retweetFavouriteTweet, 10000*20)
+setInterval(retweet, 10000*20)
