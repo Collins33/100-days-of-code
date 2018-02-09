@@ -1,6 +1,6 @@
-# shaRED
+# 100daysofcode
 
-shaRED is a twitter bot that retweets blood requests using #BloodAppeal. It also posts tweets straight from my twitter account and sends tweets to followers who follow me
+This is a twitter bot that retweets tweets with #100daysofcode hash tag
 
 # CREATOR
 
